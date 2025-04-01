@@ -27,5 +27,3 @@ await player.extractors.register(AppleMusicExtractor, { /* options */ });
 | Option | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
 | createStream(ext: AppleMusicExtractor, url: string) => Promise<Readable \| string>; | function | null | No | A function that returns a Readable stream or a string URL to the stream. |
-
-> Notice: playlists will always return the tracks author as Unknown Artist, if you know of a fix, please open an issue or a PR.
