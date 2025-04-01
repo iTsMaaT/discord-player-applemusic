@@ -1,4 +1,4 @@
-# applemusic Extractor (metadata only)
+# Apple Music Extractor (metadata only)
 
 This is a reworked applemusic extractor inspired from the original one at @discord-player/extractors.
 
