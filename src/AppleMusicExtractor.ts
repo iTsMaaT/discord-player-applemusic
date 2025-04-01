@@ -92,13 +92,6 @@ export class AppleMusicExtractor extends BaseExtractor<AppleMusicExtractorInit> 
     }
 
     public async handle(query: string, context: ExtractorSearchContext): Promise<ExtractorInfo> {
-        if (appleMusicSongRegex.test(query)) {
-            const info = await AppleMusic.getSongInfo(query);
-            console.log(info);
-            if (!info) return this.createResponse();
-            return this.createResponse(null, [this.buildTrack(info, context)]);
-        }
-
         if (appleMusicAlbumRegex.test(query)) {
             const info = await AppleMusic.getAlbumInfo(query);
             if (!info) return this.createResponse();
@@ -111,6 +104,12 @@ export class AppleMusicExtractor extends BaseExtractor<AppleMusicExtractorInit> 
             if (!info) return this.createResponse();
             const playlist = this.buildPlaylist(info, context, "playlist");
             return this.createResponse(playlist, playlist.tracks);
+        }
+
+        if (appleMusicSongRegex.test(query)) {
+            const info = await AppleMusic.getSongInfo(query);
+            if (!info) return this.createResponse();
+            return this.createResponse(null, [this.buildTrack(info, context)]);
         }
 
         // Search
