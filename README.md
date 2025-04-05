@@ -22,6 +22,18 @@ const player = new Player(client, {});
 await player.extractors.register(AppleMusicExtractor, { /* options */ });
 ```
 
+## Supported features
+
+| Feature | Supported |
+| --- | --- |
+| Single tracks | ✅ |
+| Playlists | ✅ |
+| Search | ✅ |
+| Direct streaming | ❌ |
+| Can be used as a bridge | ❌ |
+| Can bridge to ... | ✅ |
+| Autoplay | ❌ |
+
 ## Options
 
 | Option | Type | Default | Required | Description |
