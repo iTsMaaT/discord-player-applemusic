@@ -208,10 +208,20 @@ export class AppleMusic {
                     )
                     ?.getAttribute("content") ||
                 "https://music.apple.com/assets/favicon/favicon-180.png",
-                artist:
-                    res
-                        .querySelector(".song-subtitles__artists>a")
-                        ?.textContent?.trim() || "Apple Music",
+                artist:(() => {
+                    const metaMusician = res.querySelector("meta[property='music:musician']");
+                    if (metaMusician) {
+                        const artistUrl = metaMusician.getAttribute("content");
+                        const match = artistUrl ? artistUrl.match(/\/artist\/([^/]+)/) : null;
+                        if (match && match[1]) {
+                            return match[1]
+                                .split("-")
+                                .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+                                .join(" ");
+                        }
+                    }
+                    return res.querySelector(".song-subtitles__artists>a")?.textContent?.trim() || "Apple Music";
+                })(),
             };
 
             return song;
